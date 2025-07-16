@@ -1,0 +1,273 @@
+<!-- Kyrda Group Site with Nav Menu and Back Animation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kyrda Group</title>
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --fg: #ffffff;
+      --accent: #4f9aff;
+      --scan: #00ff55;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+    html, body {
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden !important;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    nav {
+      position: fixed;
+      top: 20px;
+      right: 40px;
+      z-index: 1000;
+      display: flex;
+      gap: 1rem;
+    }
+    nav button {
+      background: transparent;
+      border: 2px solid var(--accent);
+      padding: 0.5rem 1rem;
+      color: var(--accent);
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    nav button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      transition: opacity 0.8s ease-in-out;
+      position: relative;
+      animation: fadeInUp 0.8s ease;
+    }
+    header.hidden {
+      opacity: 0;
+    }
+    @keyframes fadeInUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      color: #bbb;
+      position: relative;
+      z-index: 1;
+    }
+    .scan-line {
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background: var(--scan);
+      box-shadow: 0 0 12px var(--scan);
+      animation: scanEffect 1.5s ease forwards;
+      z-index: 2;
+      left: 0;
+    }
+    @keyframes scanEffect {
+      0%   { opacity: 0.1; transform: translateY(0); }
+      10%  { opacity: 1; }
+      100% { opacity: 0; transform: translateY(60px); }
+    }
+    button {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 16px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px var(--accent);
+    }
+    section {
+      height: 100vh;
+      width: 100vw;
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, #111, #181818);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      animation-duration: 0.8s;
+      animation-fill-mode: forwards;
+    }
+    section.visible {
+      display: flex;
+      animation-name: slideUp;
+    }
+    section.hiding {
+      animation-name: slideDown;
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(100vh); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes slideDown {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+    .socials {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+    .socials a {
+      color: #ccc;
+      font-size: 2rem;
+      text-decoration: none;
+      transition: transform 0.4s ease, color 0.3s ease;
+    }
+    .socials a:hover {
+      color: var(--accent);
+      transform: scale(1.3) rotate(5deg);
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/6d3f337c1d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <nav>
+    <button onclick="showHelp()">Help</button>
+    <button onclick="showContact()">Contact</button>
+  </nav>
+
+  <header id="mainHeader">
+    <div id="scanArea">
+      <h1 id="kyrdaTitle">Kyrda Group</h1>
+      <p id="kyrdaDesc">Welcome to Kyrda — the best community on roblox</p>
+    </div>
+    <button id="visitBtn" onclick="showSection()">Visit Our Website</button>
+  </header>
+
+  <section id="content">
+    <h2>About Kyrda</h2>
+    <p>description here</p>
+    <div class="socials">
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://discord.gg/urR8w9S9" title="Discord" target="_blank">
+        <img src="pngimg.com - discord_PNG7.png" alt="Discord Logo" style="width: 36px; height: 36px; border-radius: 50%; background: none;">
+      </a>
+      <a href="#" title="Roblox"><i class="fas fa-cube"></i></a>
+    </div>
+    <button onclick="backToTop(true)">Back to Top</button>
+  </section>
+
+  <section id="help" style="display:none">
+    <h2>Help</h2>
+    <p>Contact our team via email at KyrdaSupportTeam@gmail.com if you need some help/question.</p>
+    <button onclick="backToTop(true)">Back</button>
+  </section>
+
+  <section id="contact" style="display:none">
+    <h2>Contact</h2>
+    <p>Gmail: KyrdaSupportTeam@gmail.com
+      <br>
+      tiktok: (you need to make a new one buddy) <br>
+      instagram: (you need to make a new one buddy)
+    </p>
+    <button onclick="backToTop(true)">Back</button>
+  </section>
+
+  <script>
+    function showSection() {
+      hideAllSections();
+      document.getElementById('mainHeader').classList.add('hidden');
+      const section = document.getElementById('content');
+      section.classList.remove('visible', 'hiding');
+      void section.offsetWidth;
+      section.style.display = 'flex';
+      section.classList.add('visible');
+    }
+
+    function showHelp() {
+      hideAllSections();
+      document.getElementById('mainHeader').classList.add('hidden');
+      const section = document.getElementById('help');
+      section.style.display = 'flex';
+      section.classList.add('visible');
+    }
+
+    function showContact() {
+      hideAllSections();
+      document.getElementById('mainHeader').classList.add('hidden');
+      const section = document.getElementById('contact');
+      section.style.display = 'flex';
+      section.classList.add('visible');
+    }
+
+    function backToTop(animated) {
+      hideAllSections();
+      const header = document.getElementById('mainHeader');
+      header.classList.remove('hidden');
+      if (animated) {
+        header.style.animation = 'none';
+        void header.offsetWidth;
+        header.style.animation = 'fadeInUp 0.8s ease';
+      }
+      runScan();
+    }
+
+    function hideAllSections() {
+      document.querySelectorAll('section').forEach(sec => {
+        sec.classList.remove('visible');
+        sec.style.display = 'none';
+      });
+    }
+
+    function runScan() {
+      const title = document.getElementById('kyrdaTitle');
+      const scanArea = document.getElementById('scanArea');
+      const scan = document.createElement('div');
+      scan.classList.add('scan-line');
+      scan.style.top = title.offsetTop + 'px';
+      scanArea.appendChild(scan);
+      setTimeout(() => scan.remove(), 1800);
+    }
+  </script>
+</body>
+</html>
